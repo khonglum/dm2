@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WithCompany — Investor Pitch Deck 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f5f4f0;color:#1a1a1a}
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,244,240,0.96);backdrop-filter:blur(8px);border-bottom:1px solid #e0ddd6;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px}
+.nav-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#1a1a1a}
+.nav-brand span{color:#5EA7F5}
+.nav-slides{display:flex;gap:4px}
+.nav-dot{width:26px;height:26px;border-radius:50%;border:none;background:none;cursor:pointer;font-size:10px;font-family:'DM Sans',sans-serif;color:#aaa;transition:all 0.2s}
+.nav-dot.active{background:#5EA7F5;color:#fff}
+.nav-dot:hover:not(.active){background:#eee;color:#555}
+.nav-counter{font-size:11px;color:#aaa;font-family:monospace;letter-spacing:1px}
+#deck{padding-top:56px}
+.slide{display:none;min-height:100vh;padding:60px 80px;position:relative;flex-direction:column;justify-content:center}
+.slide.active{display:flex}
+.slide-cover{background:#0f1923;color:#f5f4f0;align-items:flex-start;justify-content:flex-end;padding-bottom:80px}
+.slide-white{background:#ffffff}
+.slide-light{background:#f5f4f0}
+.slide-blue{background:#0f1923;color:#f5f4f0}
+.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;font-family:monospace;margin-bottom:16px;opacity:0.5}
+.slide-cover .eyebrow,.slide-blue .eyebrow{color:#5EA7F5;opacity:1}
+h1.display{font-family:'Playfair Display',serif;font-size:58px;font-weight:300;line-height:1.1;letter-spacing:-2px}
+h2.slide-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:400;line-height:1.2;letter-spacing:-1px;margin-bottom:8px}
+h2.slide-title-sm{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;line-height:1.3;letter-spacing:-0.5px;margin-bottom:8px}
+.rule{width:40px;height:2px;background:#5EA7F5;margin-bottom:28px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#f5f4f0;border-radius:4px;padding:24px}
+.card-white{background:#fff;border:1px solid #e8e5de;border-radius:4px;padding:22px}
+.card-dark{background:#162030;border-radius:4px;padding:22px}
+.card-lined{border-left:3px solid #5EA7F5;padding:14px 18px;background:#f0f6ff;border-radius:0 4px 4px 0}
+.stat-val{font-family:'Playfair Display',serif;font-size:38px;font-weight:300;color:#5EA7F5;letter-spacing:-2px;line-height:1;margin-bottom:4px}
+.stat-label{font-size:9px;color:#aaa;letter-spacing:2px;text-transform:uppercase;font-family:monospace}
+.tag{display:inline-block;font-size:9px;font-family:monospace;letter-spacing:2px;padding:3px 8px;border-radius:2px;text-transform:uppercase}
+.tag-blue{background:#e8f2fe;color:#5EA7F5}
+.tag-green{background:#e6f7f0;color:#2ea86e}
+.tag-orange{background:#fef3e6;color:#d4820a}
+.problem-item{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid #f0ede6}
+.problem-item:last-child{border-bottom:none}
+.problem-num{font-family:'Playfair Display',serif;font-size:28px;color:#e0ddd6;font-weight:300;line-height:1;flex-shrink:0;width:36px}
+.problem-text h4{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:3px}
+.problem-text p{font-size:12px;color:#888;line-height:1.6}
+.mod-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f0ede6}
+.mod-row:last-child{border-bottom:none}
+.mod-icon-sm{width:30px;height:30px;background:#e8f2fe;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.mod-info h4{font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.mod-info p{font-size:11px;color:#999;line-height:1.5}
+.team-card{text-align:center;padding:24px 18px}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:#e8f2fe;border:2px solid #5EA7F5;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#5EA7F5}
+.team-name{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:3px}
+.team-title{font-size:9px;color:#5EA7F5;letter-spacing:2px;font-family:monospace;margin-bottom:10px}
+.team-bio{font-size:11px;color:#888;line-height:1.6}
+.tsm-row{display:flex;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid #f0ede6}
+.tsm-row:last-child{border-bottom:none}
+.tsm-badge{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-family:monospace;letter-spacing:1px;flex-shrink:0;font-weight:600}
+.tsm-tam-b{background:#e8f2fe;color:#5EA7F5}
+.tsm-sam-b{background:#e6f7f0;color:#2ea86e}
+.tsm-som-b{background:#fef3e6;color:#d4820a}
+.tsm-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;letter-spacing:-1px;color:#1a1a1a}
+.tsm-desc{font-size:11px;color:#999;line-height:1.5;margin-top:2px}
+.comp-table{width:100%;border-collapse:collapse}
+.comp-table th{font-size:9px;font-family:monospace;letter-spacing:2px;color:#aaa;text-align:left;padding:9px 12px;border-bottom:2px solid #e8e5de}
+.comp-table td{font-size:11px;padding:11px 12px;border-bottom:1px solid #f0ede6;color:#888}
+.comp-table td:first-child{color:#333;font-weight:500}
+.comp-table tr:nth-child(even) td{background:#fafaf8}
+.comp-table tr.hl td{background:#f0f6ff}
+.comp-table tr.hl td:first-child{color:#5EA7F5;font-weight:600}
+.yes{color:#2ea86e!important;font-weight:500}
+.no{color:#e05252!important}
+.arch-box{border:1px solid #e8e5de;border-radius:6px;overflow:hidden}
+.arch-header{background:#0f1923;padding:14px 18px}
+.arch-header-text{font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-weight:400}
+.arch-header-sub{font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-top:3px}
+.arch-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e8e5de}
+.arch-cell{background:#fff;padding:14px 16px}
+.arch-cell-label{font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:5px}
+.arch-cell-name{font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.arch-cell-desc{font-size:11px;color:#aaa;line-height:1.5}
+.arch-future .arch-cell-name{color:#ccc}
+.arch-future .arch-cell-desc{color:#ddd}
+.arch-future{background:#f9f8f5}
+.arch-vtag{background:#f5f4f0;padding:10px 18px;border-bottom:1px solid #e8e5de;display:flex;gap:8px;align-items:center}
+.funding-box{background:#0f1923;border-radius:8px;padding:40px;color:#f5f4f0;text-align:center;margin-bottom:28px}
+.funding-amount{font-family:'Playfair Display',serif;font-size:72px;font-weight:300;color:#5EA7F5;letter-spacing:-4px;line-height:1}
+.funding-label{font-size:11px;color:#8ab4d4;letter-spacing:3px;font-family:monospace;margin-top:8px}
+.fund-bar{margin-bottom:14px}
+.fund-bar-label{display:flex;justify-content:space-between;margin-bottom:5px}
+.fund-bar-name{font-size:12px;color:#f5f4f0}
+.fund-bar-val{font-size:12px;color:#5EA7F5;font-family:monospace;font-weight:500}
+.fund-bar-track{height:5px;background:#1a2a3a;border-radius:3px;overflow:hidden}
+.fund-bar-fill{height:100%;background:#5EA7F5;border-radius:3px}
+.big-quote{font-family:'Playfair Display',serif;font-size:32px;font-weight:300;line-height:1.45;color:#fff;letter-spacing:-0.5px;margin-bottom:32px}
+.big-quote em{color:#5EA7F5;font-style:normal}
+.conf{position:absolute;bottom:20px;right:36px;font-size:9px;color:#ccc;font-family:monospace;letter-spacing:2px}
+.conf-dark{position:absolute;bottom:20px;right:36px;font-size:9px;color:#ffffff30;font-family:monospace;letter-spacing:2px}
+#nav-arrows{position:fixed;bottom:28px;right:44px;display:flex;gap:8px;z-index:100}
+.arrow-btn{width:38px;height:38px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:14px;color:#555;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:all 0.15s}
+.arrow-btn:hover{background:#5EA7F5;color:#fff;border-color:#5EA7F5}
+#slide-label{position:fixed;bottom:36px;left:44px;font-size:10px;color:#bbb;font-family:monospace;letter-spacing:2px;z-index:100}
+</style>
+</head>
+<body>
+<div id="nav">
+  <div class="nav-brand">With<span>Company</span></div>
+  <div class="nav-slides" id="nav-dots"></div>
+  <div class="nav-counter" id="nav-counter">1 / 12</div>
+</div>
+<div id="deck">
+
+<!-- S1 COVER -->
+<div class="slide slide-cover active" id="slide-1">
+  <div style="max-width:660px">
+    <div class="eyebrow">Confidential · Seed Round 2026</div>
+    <h1 class="display" style="color:#fff;margin-bottom:24px">The Operating<br/>System for<br/><span style="color:#5EA7F5">Modern Marketing</span></h1>
+    <p style="font-size:15px;color:#8ab4d4;line-height:1.75;margin-bottom:48px;max-width:480px">WithCompany builds AI vertical operating systems that turn industry data into computable business value — starting with MarketingOS.</p>
+    <div style="display:flex;gap:48px;align-items:flex-end;flex-wrap:wrap">
+      <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:3px;margin-bottom:5px">FOUNDING TEAM</div><div style="font-size:13px;color:#f5f4f0">Lum · Xiao Yeen · Natalie</div></div>
+      <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:3px;margin-bottom:5px">SEEKING</div><div style="font-size:13px;color:#f5f4f0">RM 1.5M · 20% equity</div></div>
+      <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:3px;margin-bottom:5px">HQ</div><div style="font-size:13px;color:#f5f4f0">Kuala Lumpur, Malaysia</div></div>
+    </div>
+  </div>
+  <div class="conf-dark">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S2 PROBLEM -->
+<div class="slide slide-white" id="slide-2">
+  <div style="max-width:780px;width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">The Problem</div>
+    <h2 class="slide-title">Marketing spend is the biggest unaccountable line in corporate budgets</h2>
+    <div class="rule"></div>
+    <div class="problem-item"><div class="problem-num">01</div><div class="problem-text"><h4>No forecast before spend</h4><p>A RM 1M campaign launches across 5 channels with no unified model to predict whether 20,000 conversions will be hit — until the money is already gone.</p></div></div>
+    <div class="problem-item"><div class="problem-num">02</div><div class="problem-text"><h4>Agency costs eat the media budget</h4><p>30–40% of marketing budgets go to agency retainers, creative production, and strategy fees — work that AI can now do at a fraction of the cost. Yet teams still pay.</p></div></div>
+    <div class="problem-item"><div class="problem-num">03</div><div class="problem-text"><h4>Budget cuts without a smarter alternative</h4><p>Corporate marketing budgets across Malaysia and SEA have been cut structurally since 2022. Teams are asked to hit the same KPIs with less — but given no better tools.</p></div></div>
+    <div class="problem-item"><div class="problem-num">04</div><div class="problem-text"><h4>Data exists. Intelligence doesn't.</h4><p>Every campaign generates performance data. But without a system to convert it into forecast precision, teams repeat the same inefficiencies every year.</p></div></div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S3 INSIGHT -->
+<div class="slide slide-blue" id="slide-3">
+  <div style="max-width:700px">
+    <div class="eyebrow">The Insight</div>
+    <div class="big-quote">"Marketing teams don't need more tools. They need an <em>operating system</em> — one that forecasts before they spend, produces creative without an agency, and proves ROI after."</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px">
+      <div><div style="font-size:36px;font-family:'Playfair Display',serif;color:#5EA7F5;font-weight:300;margin-bottom:6px">80%</div><div style="font-size:12px;color:#8ab4d4;line-height:1.6">cost reduction on creative production when AI replaces agency briefing</div></div>
+      <div><div style="font-size:36px;font-family:'Playfair Display',serif;color:#5EA7F5;font-weight:300;margin-bottom:6px">97%</div><div style="font-size:12px;color:#8ab4d4;line-height:1.6">forecast confidence achievable with historical efficiency data across campaigns</div></div>
+      <div><div style="font-size:36px;font-family:'Playfair Display',serif;color:#5EA7F5;font-weight:300;margin-bottom:6px">0</div><div style="font-size:12px;color:#8ab4d4;line-height:1.6">SEA-native platforms today combine forecast intelligence with AI creative production</div></div>
+    </div>
+  </div>
+  <div class="conf-dark">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S4 SOLUTION / ARCHITECTURE -->
+<div class="slide slide-white" id="slide-4">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">The Solution</div>
+    <h2 class="slide-title">WithCompany — AI Vertical Operating Systems</h2>
+    <div class="rule"></div>
+    <div class="arch-box" style="margin-bottom:18px">
+      <div class="arch-header">
+        <div class="arch-header-text">WithCompany</div>
+        <div class="arch-header-sub">AI VERTICAL COMPANY · KUALA LUMPUR · TARGETING SEA</div>
+      </div>
+      <div class="arch-vtag">
+        <span class="tag tag-blue">VERTICAL 1 — ACTIVE</span>
+        <span style="font-size:13px;font-weight:600;color:#1a1a1a">WithProp</span>
+        <span style="font-size:12px;color:#aaa">· Property Industry Operating System</span>
+        <span class="tag tag-orange" style="margin-left:auto">FUTURE: WithRetail · WithFSI · WithHealth</span>
+      </div>
+      <div class="arch-row">
+        <div class="arch-cell">
+          <div class="arch-cell-label">MODULE 1 · LIVE</div>
+          <div class="arch-cell-name">MarketingOS</div>
+          <div class="arch-cell-desc">AI forecast engine + creative studio. Replaces agency spend. Predicts ROI before a campaign launches.</div>
+        </div>
+        <div class="arch-cell arch-future">
+          <div class="arch-cell-label">MODULE 2 · ROADMAP 2027</div>
+          <div class="arch-cell-name">SalesOS</div>
+          <div class="arch-cell-desc">Lead pipeline, sales conversion intelligence, and CRM for property developers.</div>
+        </div>
+        <div class="arch-cell arch-future">
+          <div class="arch-cell-label">MODULE 3 · ROADMAP 2028</div>
+          <div class="arch-cell-name">CommunityOS</div>
+          <div class="arch-cell-desc">Resident management and recurring income platform — sell once, earn forever.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-lined">
+      <p style="font-size:13px;color:#444;line-height:1.7"><strong>The WithProp thesis:</strong> A property developer sells a house once. WithProp's three modules convert that single transaction into a data loop — MarketingOS drives leads, SalesOS converts them, CommunityOS retains residents and generates recurring income. Every module feeds the next.</p>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S5 PRODUCT -->
+<div class="slide slide-light" id="slide-5">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">Product · MarketingOS</div>
+    <h2 class="slide-title-sm">Two modules. One system. Zero agency dependency.</h2>
+    <div class="rule"></div>
+    <div class="two-col">
+      <div class="card-white">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+          <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:3px">MODULE A</div><div style="font-size:15px;font-weight:600;color:#1a1a1a">Marketing Team</div></div>
+          <span class="tag tag-blue">FORECAST ENGINE</span>
+        </div>
+        <div class="mod-row"><div class="mod-icon-sm">◈</div><div class="mod-info"><h4>Campaign Brief Builder</h4><p>Structured brief linked to budget, KPI, and channel from Day 1</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">◉</div><div class="mod-info"><h4>Budget Allocation Engine</h4><p>Projects KPI output per channel before a ringgit is spent</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">◐</div><div class="mod-info"><h4>Revenue Forecast Projection</h4><p>Week-by-week confidence range — CMO signs off on a forecast, not a hope</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">◎</div><div class="mod-info"><h4>Forecast vs Actual Tracker</h4><p>Live variance alerts before the campaign goes off track</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">◆</div><div class="mod-info"><h4>Auto Spend Reporting</h4><p>CMO-ready reports in seconds, not 2 days of manual compilation</p></div></div>
+      </div>
+      <div class="card-white">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+          <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:3px">MODULE B</div><div style="font-size:15px;font-weight:600;color:#1a1a1a">Creative Studio</div></div>
+          <span class="tag tag-green">REPLACES AGENCY</span>
+        </div>
+        <div class="mod-row"><div class="mod-icon-sm">✦</div><div class="mod-info"><h4>Campaign Line Generator</h4><p>Headlines, taglines, copy variants per segment — 80% cheaper than agency</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">✧</div><div class="mod-info"><h4>Creative Direction Engine</h4><p>Mood, palette, photography style, art direction brief for internal teams</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">❋</div><div class="mod-info"><h4>Format Adaptor</h4><p>One brief → all formats: Meta, TikTok, YouTube, Google Display</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">✺</div><div class="mod-info"><h4>Influencer Brief Builder</h4><p>Structured TikTok/IG creator briefs linked to campaign ROI model</p></div></div>
+        <div class="mod-row"><div class="mod-icon-sm">⬡</div><div class="mod-info"><h4>Landing Page Wireframer</h4><p>Conversion-optimised page structure ready for dev handoff</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S6 MARKET SIZE -->
+<div class="slide slide-white" id="slide-6">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">Market Size</div>
+    <h2 class="slide-title">A USD 46B market with no unified platform</h2>
+    <div class="rule"></div>
+    <div class="two-col">
+      <div>
+        <div class="tsm-row"><div class="tsm-badge tsm-tam-b">TAM</div><div><div class="tsm-num">USD 46B</div><div style="font-size:10px;color:#5EA7F5;font-family:monospace;letter-spacing:1px;margin:2px 0">SEA Advertising + MarTech · 2025</div><div class="tsm-desc">Total spend on marketing technology and advertising services across SEA.</div></div></div>
+        <div class="tsm-row"><div class="tsm-badge tsm-sam-b">SAM</div><div><div class="tsm-num">USD 4.2B</div><div style="font-size:10px;color:#2ea86e;font-family:monospace;letter-spacing:1px;margin:2px 0">Digital MarTech + Creative Agency Spend · SEA</div><div class="tsm-desc">The planning, production and tooling layer above media buying that MarketingOS directly replaces.</div></div></div>
+        <div class="tsm-row"><div class="tsm-badge tsm-som-b">SOM</div><div><div class="tsm-num">USD 180M</div><div style="font-size:10px;color:#d4820a;font-family:monospace;letter-spacing:1px;margin:2px 0">MY + SG Beachhead · 2026–2028</div><div class="tsm-desc">3-year realistic capture: mid-to-large corporates running RM 500K+ campaigns.</div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card-white">
+          <div style="font-size:9px;color:#aaa;font-family:monospace;letter-spacing:2px;margin-bottom:14px">MALAYSIA ALONE · 2025</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <div><div class="stat-val" style="font-size:26px">RM 9.5B</div><div class="stat-label">TOTAL AD MARKET</div></div>
+            <div><div class="stat-val" style="font-size:26px">78%</div><div class="stat-label">DIGITAL SHARE</div></div>
+            <div><div class="stat-val" style="font-size:26px">+22%</div><div class="stat-label">Q2 2025 GROWTH</div></div>
+          </div>
+        </div>
+        <div class="card-white">
+          <div style="font-size:9px;color:#aaa;font-family:monospace;letter-spacing:2px;margin-bottom:12px">WHY NOW</div>
+          <div style="font-size:12px;color:#666;line-height:1.9">
+            → APAC MarTech growing at <strong style="color:#1a1a1a">24% CAGR</strong> — fastest region globally<br/>
+            → GenAI creative tools at <strong style="color:#1a1a1a">25.9% CAGR</strong> — technology now mature<br/>
+            → Marketing budgets cut structurally — ROI tools at peak demand<br/>
+            → <strong style="color:#1a1a1a">No SEA-native platform</strong> unifies forecast + AI creative today
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S7 COMPETITION -->
+<div class="slide slide-light" id="slide-7">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">Competitive Landscape</div>
+    <h2 class="slide-title-sm">No one in SEA owns both sides of this problem</h2>
+    <div class="rule"></div>
+    <table class="comp-table" style="margin-bottom:22px">
+      <thead><tr><th>PLAYER</th><th>FORECAST ENGINE</th><th>AI CREATIVE</th><th>SEA-NATIVE</th><th>UNIFIED PLATFORM</th><th>VERDICT</th></tr></thead>
+      <tbody>
+        <tr><td>HubSpot / Salesforce</td><td class="no">Partial (CRM only)</td><td class="no">None</td><td class="no">No</td><td class="no">No</td><td style="color:#aaa;font-size:10px">CRM-centric, not campaign OS</td></tr>
+        <tr><td>Adobe GenStudio</td><td class="no">None</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td style="color:#aaa;font-size:10px">Creative only, no forecast</td></tr>
+        <tr><td>Appier / AdCreative.ai</td><td class="no">None</td><td class="yes">Yes</td><td style="color:#d4820a">Partial (APAC)</td><td class="no">No</td><td style="color:#aaa;font-size:10px">Ad creative only, no planning</td></tr>
+        <tr><td>Local MY agencies</td><td class="no">None</td><td class="no">Minimal</td><td class="yes">Yes</td><td class="no">No</td><td style="color:#aaa;font-size:10px">Human-only, not scalable</td></tr>
+        <tr class="hl"><td>MarketingOS (WithCompany)</td><td class="yes">✓ Full forecast engine</td><td class="yes">✓ Full AI creative</td><td class="yes">✓ Built for MY/SEA</td><td class="yes">✓ Only unified platform</td><td style="color:#5EA7F5;font-size:10px;font-weight:600">Category creator</td></tr>
+      </tbody>
+    </table>
+    <div class="card-lined">
+      <p style="font-size:13px;color:#444;line-height:1.7"><strong>Our compounding moat:</strong> As MarketingOS accumulates multi-client campaign data across industries, we build a proprietary benchmark intelligence layer no single agency can replicate. Your property developer conversion rate benchmarks against the market. Your CPA benchmarks against 50 BFSI campaigns. This compounds with every client we add.</p>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S8 GO TO MARKET -->
+<div class="slide slide-white" id="slide-8">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">Go-to-Market</div>
+    <h2 class="slide-title-sm">Land with forecast proof. Expand with creative value.</h2>
+    <div class="rule"></div>
+    <div class="four-col" style="margin-bottom:24px">
+      <div class="card-white" style="border-top:3px solid #5EA7F5">
+        <div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:8px">Q1–Q2 2026</div>
+        <div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:8px">Build & Seed</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">MarketingOS MVP live<br/>3–5 pilot clients onboarded<br/>LinkedIn thought leadership<br/>Founder content on ROI gaps<br/>Waitlist at withcompany.ai</div>
+      </div>
+      <div class="card-white" style="border-top:3px solid #5EA7F5">
+        <div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:8px">Q3 2026</div>
+        <div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:8px">Prove & Publish</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">Case study: forecast vs actual<br/>YouTube product demo series<br/>Google Search targeting CMOs<br/>Forum + community seeding<br/>First press coverage</div>
+      </div>
+      <div class="card-white" style="border-top:3px solid #2ea86e">
+        <div style="font-size:9px;color:#2ea86e;font-family:monospace;letter-spacing:2px;margin-bottom:8px">Q4 2026</div>
+        <div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:8px">Unlock Creative Studio</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">Beta Creative Studio live<br/>Test ROI lift from AI creative<br/>Agency white-label deals<br/>Pricing tiers launched<br/>The Edge + KrASIA press</div>
+      </div>
+      <div class="card-white" style="border-top:3px solid #d4820a">
+        <div style="font-size:9px;color:#d4820a;font-family:monospace;letter-spacing:2px;margin-bottom:8px">2027</div>
+        <div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:8px">WithProp Launch</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">WithProp live with Aspen Group<br/>SalesOS roadmap begins<br/>Singapore market entry<br/>Series A preparation<br/>Cross-client benchmarks active</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="card" style="display:flex;gap:16px;align-items:center"><div style="font-size:30px;font-family:'Playfair Display',serif;color:#5EA7F5;font-weight:300;flex-shrink:0">20</div><div><div style="font-size:13px;font-weight:600;color:#1a1a1a">Paying clients by end of 2026</div><div style="font-size:12px;color:#888;margin-top:2px">RM 90K avg ACV · RM 1.8M ARR target</div></div></div>
+      <div class="card" style="display:flex;gap:16px;align-items:center"><div style="font-size:30px;font-family:'Playfair Display',serif;color:#5EA7F5;font-weight:300;flex-shrink:0">RM12M</div><div><div style="font-size:13px;font-weight:600;color:#1a1a1a">ARR target by end of Year 2</div><div style="font-size:12px;color:#888;margin-top:2px">100 clients across MY + SG · RM 120K avg ACV</div></div></div>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S9 BUSINESS MODEL -->
+<div class="slide slide-light" id="slide-9">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">Business Model</div>
+    <h2 class="slide-title-sm">SaaS subscription · tiered by module access and team size</h2>
+    <div class="rule"></div>
+    <div class="three-col" style="margin-bottom:22px">
+      <div class="card-white" style="border-top:3px solid #e8e5de">
+        <div style="font-size:9px;color:#aaa;font-family:monospace;letter-spacing:2px;margin-bottom:10px">TIER 1</div>
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px">Starter</div>
+        <div style="font-family:'Playfair Display',serif;font-size:30px;color:#5EA7F5;font-weight:300;letter-spacing:-1px;margin-bottom:3px">RM 4,500</div>
+        <div style="font-size:10px;color:#aaa;margin-bottom:14px">per month · annual contract</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">MarketingOS: Marketing Team only<br/>Up to 3 users · 3 active campaigns<br/>Standard reporting<br/>Email support</div>
+        <div style="margin-top:14px;font-size:10px;color:#aaa;padding-top:12px;border-top:1px solid #f0ede6">SME teams, startups with in-house marketing</div>
+      </div>
+      <div class="card-white" style="border-top:3px solid #5EA7F5;box-shadow:0 4px 20px rgba(94,167,245,0.1)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px">TIER 2</div>
+          <span class="tag tag-blue">RECOMMENDED</span>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px">Pro</div>
+        <div style="font-family:'Playfair Display',serif;font-size:30px;color:#5EA7F5;font-weight:300;letter-spacing:-1px;margin-bottom:3px">RM 9,500</div>
+        <div style="font-size:10px;color:#aaa;margin-bottom:14px">per month · annual contract</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">Both modules (Marketing Team + Creative Studio)<br/>Up to 10 users · Unlimited campaigns<br/>Attribution + channel analytics<br/>Priority support + onboarding</div>
+        <div style="margin-top:14px;font-size:10px;color:#aaa;padding-top:12px;border-top:1px solid #f0ede6">Mid-market corporates, property developers, BFSI</div>
+      </div>
+      <div class="card-white" style="border-top:3px solid #1a1a1a">
+        <div style="font-size:9px;color:#aaa;font-family:monospace;letter-spacing:2px;margin-bottom:10px">TIER 3</div>
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px">Enterprise</div>
+        <div style="font-family:'Playfair Display',serif;font-size:30px;color:#1a1a1a;font-weight:300;letter-spacing:-1px;margin-bottom:3px">Custom</div>
+        <div style="font-size:10px;color:#aaa;margin-bottom:14px">bespoke pricing · multi-year</div>
+        <div style="font-size:11px;color:#888;line-height:1.8">Full platform + API access<br/>Unlimited users + campaigns<br/>White-label option for agencies<br/>Dedicated success manager</div>
+        <div style="margin-top:14px;font-size:10px;color:#aaa;padding-top:12px;border-top:1px solid #f0ede6">Large corporates, agency groups, WithProp vertical clients</div>
+      </div>
+    </div>
+    <div class="card-lined">
+      <p style="font-size:13px;color:#444;line-height:1.7"><strong>Founding Partner Rate:</strong> For investor-clients such as Aspen Group — 50% of Pro pricing, locked for life, in exchange for co-creation input and roadmap access. Their real-world data trains the platform and makes it more defensible for every client that follows.</p>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S10 TEAM -->
+<div class="slide slide-white" id="slide-10">
+  <div style="width:100%">
+    <div class="eyebrow" style="color:#5EA7F5;opacity:1">The Team</div>
+    <h2 class="slide-title-sm">Built by operators who lived the problem firsthand</h2>
+    <div class="rule"></div>
+    <div class="three-col" style="margin-bottom:28px">
+      <div class="team-card card-white"><div class="team-avatar">L</div><div class="team-name">Lum</div><div class="team-title">CO-FOUNDER · CEO & CTO</div><div class="team-bio">Technical co-founder leading product architecture, platform development, and AI infrastructure. Drives engineering from MarketingOS to the full WithProp stack.</div></div>
+      <div class="team-card card-white"><div class="team-avatar">XY</div><div class="team-name">Xiao Yeen</div><div class="team-title">CO-FOUNDER · CSO</div><div class="team-bio">Chief Strategy Officer. Drives business architecture, investor relations, and the WithCompany vertical expansion roadmap. Deep background in corporate marketing and campaign management.</div></div>
+      <div class="team-card card-white"><div class="team-avatar">N</div><div class="team-name">Natalie</div><div class="team-title">CO-FOUNDER · CPO</div><div class="team-bio">Chief Partnership Officer. Leads strategic partnerships, industry go-to-market, and client onboarding. Former Head of Marketing — brings direct knowledge of the pain points MarketingOS solves.</div></div>
+    </div>
+    <div style="border-top:1px solid #f0ede6;padding-top:20px">
+      <div style="font-size:9px;color:#aaa;font-family:monospace;letter-spacing:2px;margin-bottom:14px">CURRENT TEAM + FIRST HIRES WITH SEED CAPITAL</div>
+      <div class="four-col">
+        <div class="card" style="padding:14px"><div style="font-size:9px;color:#2ea86e;font-family:monospace;letter-spacing:1px;margin-bottom:5px">IN TEAM NOW</div><div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:2px">2 × Fullstack Engineers</div><div style="font-size:10px;color:#888">Platform build, module development</div></div>
+        <div class="card" style="padding:14px"><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:1px;margin-bottom:5px">HIRE Q1 2026</div><div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:2px">Product Manager</div><div style="font-size:10px;color:#888">Client specs, roadmap, pilot management</div></div>
+        <div class="card" style="padding:14px"><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:1px;margin-bottom:5px">HIRE Q1 2026</div><div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:2px">AI / Data Engineer</div><div style="font-size:10px;color:#888">Forecast models, attribution, ML layer</div></div>
+        <div class="card" style="padding:14px"><div style="font-size:9px;color:#d4820a;font-family:monospace;letter-spacing:1px;margin-bottom:5px">HIRE Q2 2026</div><div style="font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:2px">B2B Sales Executive</div><div style="font-size:10px;color:#888">Pipeline, corporate accounts, SaaS sales MY</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="conf">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S11 THE ASK -->
+<div class="slide slide-blue" id="slide-11">
+  <div style="width:100%">
+    <div class="eyebrow">The Ask</div>
+    <div class="funding-box">
+      <div style="font-size:10px;color:#5EA7F5;font-family:monospace;letter-spacing:3px;margin-bottom:14px">SEED ROUND · 2026</div>
+      <div class="funding-amount">RM 1.5M</div>
+      <div class="funding-label">FOR 20% EQUITY · RM 7.5M PRE-MONEY VALUATION</div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:14px">USE OF FUNDS</div>
+        <div class="fund-bar"><div class="fund-bar-label"><span class="fund-bar-name">Product & Engineering</span><span class="fund-bar-val">RM 600K · 40%</span></div><div class="fund-bar-track"><div class="fund-bar-fill" style="width:40%"></div></div></div>
+        <div class="fund-bar"><div class="fund-bar-label"><span class="fund-bar-name">Team & Salaries (18 months)</span><span class="fund-bar-val">RM 450K · 30%</span></div><div class="fund-bar-track"><div class="fund-bar-fill" style="width:30%"></div></div></div>
+        <div class="fund-bar"><div class="fund-bar-label"><span class="fund-bar-name">Sales & Go-to-Market</span><span class="fund-bar-val">RM 300K · 20%</span></div><div class="fund-bar-track"><div class="fund-bar-fill" style="width:20%"></div></div></div>
+        <div class="fund-bar"><div class="fund-bar-label"><span class="fund-bar-name">Operations & Infrastructure</span><span class="fund-bar-val">RM 150K · 10%</span></div><div class="fund-bar-track"><div class="fund-bar-fill" style="width:10%"></div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card-dark">
+          <div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:10px">18-MONTH MILESTONES</div>
+          <div style="font-size:12px;color:#8ab4d4;line-height:1.9">✓ MarketingOS MVP live — Q1 2026<br/>✓ 5 paying pilot clients — Q2 2026<br/>✓ Creative Studio launched — Q3 2026<br/>✓ 20 clients · RM 1.8M ARR — Q4 2026<br/>✓ WithProp vertical initiated — Q1 2027<br/>✓ Series A ready — Q2 2027</div>
+        </div>
+        <div class="card-dark">
+          <div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:2px;margin-bottom:10px">WHAT INVESTORS GET</div>
+          <div style="font-size:12px;color:#8ab4d4;line-height:1.9">→ 20% equity in WithCompany<br/>→ Board observer seat (lead investor)<br/>→ Founding Partner Rate on MarketingOS<br/>→ First right of refusal on Series A<br/>→ Access to WithProp as design partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="conf-dark">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+<!-- S12 CLOSE -->
+<div class="slide slide-cover" id="slide-12">
+  <div style="max-width:640px">
+    <div class="eyebrow">Why WithCompany</div>
+    <h1 class="display" style="color:#fff;font-size:46px;margin-bottom:28px">We are not building another marketing tool.<br/>We are building the <span style="color:#5EA7F5">infrastructure</span> every industry's marketing will run on.</h1>
+    <p style="font-size:14px;color:#8ab4d4;line-height:1.8;margin-bottom:44px">MarketingOS is the first module. WithProp is the first vertical. WithCompany is the platform that turns industry data into computable, forecastable, optimisable business value — starting in Malaysia, scaling across Southeast Asia.</p>
+    <div style="display:flex;gap:40px;flex-wrap:wrap">
+      <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:3px;margin-bottom:5px">CONTACT</div><div style="font-size:13px;color:#f5f4f0">Xiao Yeen · Co-Founder & CSO</div><div style="font-size:12px;color:#8ab4d4">withcompany.ai</div></div>
+      <div><div style="font-size:9px;color:#5EA7F5;font-family:monospace;letter-spacing:3px;margin-bottom:5px">SEEKING</div><div style="font-size:13px;color:#f5f4f0">RM 1.5M · 20% · Seed 2026</div><div style="font-size:12px;color:#8ab4d4">RM 7.5M pre-money valuation</div></div>
+    </div>
+  </div>
+  <div class="conf-dark">WITHCOMPANY · CONFIDENTIAL · 2026</div>
+</div>
+
+</div>
+<div id="nav-arrows"><button class="arrow-btn" onclick="prevSlide()">&#8592;</button><button class="arrow-btn" onclick="nextSlide()">&#8594;</button></div>
+<div id="slide-label">SLIDE 1 OF 12</div>
+<script>
+const TOTAL=12,TITLES=["Cover","Problem","Insight","Solution","Product","Market Size","Competition","Go-to-Market","Business Model","Team","The Ask","Close"];
+let cur=1;
+function buildDots(){const c=document.getElementById('nav-dots');for(let i=1;i<=TOTAL;i++){const b=document.createElement('button');b.className='nav-dot'+(i===1?' active':'');b.textContent=i;b.title=TITLES[i-1];b.onclick=()=>goTo(i);c.appendChild(b);}}
+function goTo(n){document.getElementById('slide-'+cur).classList.remove('active');document.querySelectorAll('.nav-dot')[cur-1].classList.remove('active');cur=n;document.getElementById('slide-'+cur).classList.add('active');document.querySelectorAll('.nav-dot')[cur-1].classList.add('active');document.getElementById('nav-counter').textContent=cur+' / '+TOTAL;document.getElementById('slide-label').textContent='SLIDE '+cur+' OF '+TOTAL+' · '+TITLES[cur-1].toUpperCase();window.scrollTo(0,0);}
+function nextSlide(){if(cur<TOTAL)goTo(cur+1);}
+function prevSlide(){if(cur>1)goTo(cur-1);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prevSlide();});
+buildDots();goTo(1);
+</script>
+</body>
+</html>
